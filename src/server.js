@@ -7,12 +7,11 @@ import initWebRoutes from "./routes/web.js";
 
 let app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 configViewEngine(app);
 
 initWebRoutes(app);
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 let port = process.env.PORT || 8080;
 
