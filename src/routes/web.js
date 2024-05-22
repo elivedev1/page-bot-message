@@ -4,7 +4,7 @@ import { postWebhook, getWebhook } from "../controllers/HomeController";
 
 let router = express.Router();
 
-export let initWebRoutes = (app) => {
+let initWebRoutes = (app) => {
   router.get("/", (req, res) => {
     res.send("hello");
   });
@@ -18,3 +18,4 @@ export let initWebRoutes = (app) => {
 
   return app.use("/", router);
 };
+export default initWebRoutes;
