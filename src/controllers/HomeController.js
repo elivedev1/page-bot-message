@@ -135,7 +135,33 @@ export const callSendAPI = (sender_psid, response) => {
   // Send the HTTP request to the Messenger Platform
   request(
     {
-      url: "https://graph.facebook.com/v2.6/me/messages",
+      url: "https://graph.facebook.com/v20.0/me/messages",
+      qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+      method: "POST",
+      json: request_body,
+    },
+    (err, res, body) => {
+      if (!err) {
+        console.log("message sent!");
+      } else {
+        console.error("Unable to send message:" + err);
+      }
+    }
+  );
+};
+
+export const setupProfile = (req, res) => {
+  let request_body = {
+    recipient: {
+      id: sender_psid,
+    },
+    message: response,
+  };
+
+  // Send the HTTP request to the Messenger Platform
+  request(
+    {
+      url: "https://graph.facebook.com/v20.0/me/messages",
       qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
       method: "POST",
       json: request_body,
