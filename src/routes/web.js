@@ -1,6 +1,6 @@
 import express from "express";
 
-import { postWebhook, getWebhook } from "../controllers/HomeController";
+import { postWebhook, getWebhook } from "../controllers/HomeController.js";
 
 let router = express.Router();
 
