@@ -1,16 +1,16 @@
 import express from "express";
 
-import homeController from "../controllers/HomeController";
+import { postWebhook, getWebhook } from "../controllers/HomeController";
 
 let router = express.Router();
 
-let initWebRoutes = (app) => {
+export let initWebRoutes = (app) => {
   router.get("/", (req, res) => {
     res.send("hello");
   });
 
-  router.post("/webhook", homeController.postWebhook);
-  router.get("/webhook", homeController.getWebhook);
+  router.post("/webhook", postWebhook);
+  router.get("/webhook", getWebhook);
 
   router.get("/hello", (req, res) => {
     res.send("hello");
@@ -18,5 +18,3 @@ let initWebRoutes = (app) => {
 
   return app.use("/", router);
 };
-
-module.exports = initWebRoutes;

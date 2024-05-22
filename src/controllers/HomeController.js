@@ -1,10 +1,10 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-let getHomePage = (req, res) => {
+export let getHomePage = (req, res) => {
   return res.render("homepage.ejs");
 };
-let getWebhook = (req, res) => {
+export let getWebhook = (req, res) => {
   let VERIFY_TOKEN = process.env.VERIFY_TOKEN;
 
   // Parse the query params
@@ -28,7 +28,7 @@ let getWebhook = (req, res) => {
     res.sendStatus(400);
   }
 };
-let postWebhook = (req, res) => {
+export let postWebhook = (req, res) => {
   let body = req.body;
 
   // Checks this is an event from a page subscription
@@ -47,10 +47,4 @@ let postWebhook = (req, res) => {
     // Returns a '404 Not Found' if event is not from a page subscription
     res.sendStatus(404);
   }
-};
-
-module.exports = {
-  getHomePage,
-  postWebhook,
-  getWebhook,
 };
