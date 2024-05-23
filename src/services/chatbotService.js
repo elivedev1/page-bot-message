@@ -58,7 +58,7 @@ export const handleGetStarted = (sender_psid) => {
       let response1 = {
         text: `Ok. Chào mừng bạn ${username} đến với kênh chúng tôi`,
       };
-      let response2 = sendGetStartedTemplate();
+      let response2 = getStartedTemplate();
 
       await callSendAPI(sender_psid, response1);
 
@@ -71,7 +71,21 @@ export const handleGetStarted = (sender_psid) => {
   });
 };
 
-const sendGetStartedTemplate = () => {
+export const handleSendMainMenu = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response1 = getMainMenuTemplate();
+
+      await callSendAPI(sender_psid, response1);
+
+      resolve("done");
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+const getStartedTemplate = () => {
   let response = {
     attachment: {
       type: "template",
@@ -97,6 +111,68 @@ const sendGetStartedTemplate = () => {
                 type: "postback",
                 title: "HƯỚNG DẪN SỬ DỤNG BOT",
                 payload: "GUIDE_TO_USE",
+              },
+            ],
+          },
+        ],
+      },
+    },
+  };
+  return response;
+};
+
+const getMainMenuTemplate = () => {
+  let response = {
+    attachment: {
+      type: "template",
+      payload: {
+        template_type: "generic",
+        elements: [
+          {
+            title: "Menu của chúng tôi",
+            subtitle:
+              "Chúng tôi hân hạnh mang đến cho bạn những trải nghiệm tuyệt vời",
+            image_url: IMAGE_GET_STARTED,
+            buttons: [
+              {
+                type: "postback",
+                title: "BỮA TRƯA",
+                payload: "LUNCH_MENU",
+              },
+              {
+                type: "postback",
+                title: "BỮA TỐI",
+                payload: "DINNER_MENU",
+              },
+              {
+                type: "postback",
+                title: "HƯỚNG DẪN SỬ DỤNG BOT",
+                payload: "GUIDE_TO_USE",
+              },
+            ],
+          },
+          {
+            title: "Giờ mở cửa",
+            subtitle:
+              "Chúng tôi hân hạnh mang đến cho bạn những trải nghiệm tuyệt vời",
+            image_url: IMAGE_GET_STARTED,
+            buttons: [
+              {
+                type: "postback",
+                title: "ĐẶT BÀN",
+                payload: "RESERVE_TABLE",
+              },
+            ],
+          },
+          {
+            title: "Không gian nhà hàng",
+            subtitle: "Nhà hàng có sức chứa lên đến 300 khách",
+            image_url: IMAGE_GET_STARTED,
+            buttons: [
+              {
+                type: "postback",
+                title: "Chi Tiết",
+                payload: "SHOW_ROOMS",
               },
             ],
           },
