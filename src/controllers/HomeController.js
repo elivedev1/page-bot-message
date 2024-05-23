@@ -1,6 +1,9 @@
 import dotenv from "dotenv";
 import request from "request";
-import { handleGetStarted } from "../services/chatbotService.js";
+import {
+  handleGetStarted,
+  handleSendMainMenu,
+} from "../services/chatbotService.js";
 dotenv.config();
 
 const ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
