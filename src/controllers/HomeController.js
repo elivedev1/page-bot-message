@@ -120,9 +120,12 @@ export const handlePostback = async (sender_psid, received_postback) => {
     case "yes":
       response = { text: "Thanks!" };
       break;
+
     case "no":
       response = { text: "Oops, try sending another image." };
       break;
+
+    case "RESTART_BOT":
     case "GET_STARTED":
       await handleGetStarted(sender_psid);
       break;
@@ -188,4 +191,55 @@ export const setupProfile = async (req, res) => {
   );
 
   return res.send("setup use profile success!");
+};
+
+export const setupPersistantMenu = async (req, res) => {
+  let request_body = {
+    persistent_menu: [
+      {
+        locale: "default",
+        composer_input_disabled: false,
+        call_to_actions: [
+          {
+            // type: "postback",
+            type: "web_url",
+            title: "Youtube channel",
+            url: "https://www.originalcoastclothing.com/",
+            webview_height_ratio: "full",
+          },
+          {
+            type: "web_url",
+            title: "Nhóm FACEBOOK Tarot",
+            url: "https://www.originalcoastclothing.com/",
+            webview_height_ratio: "full",
+          },
+          {
+            type: "postback",
+            title: "Khởi động lại chat",
+            payload: "RESTART_BOT",
+          },
+        ],
+      },
+    ],
+  };
+
+  // Send the HTTP request to the Messenger Platform
+  await request(
+    {
+      url: `https://graph.facebook.com/v20.0/me/messenger_profile?access_token=${ACCESS_TOKEN}`,
+      qs: { access_token: ACCESS_TOKEN },
+      method: "POST",
+      json: request_body,
+    },
+    (err, res, body) => {
+      console.log(body);
+      if (!err) {
+        console.log("setup use persistant menu success!");
+      } else {
+        console.error("Unable to send message:" + err);
+      }
+    }
+  );
+
+  return res.send("setup use persistant menu success!");
 };
