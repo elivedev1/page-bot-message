@@ -55,7 +55,7 @@ export const handleGetStarted = (sender_psid) => {
     try {
       let username = await getUserName(sender_psid);
       let response = {
-        text: `Ok. Chào mừng bạn ${username} đến với chúng tôi`,
+        text: `Ok. Chào mừng bạn ${username} đến với kênh chúng tôi`,
       };
       await callSendAPI(sender_psid, response);
       resolve("done");
