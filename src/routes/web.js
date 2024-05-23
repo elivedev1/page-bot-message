@@ -6,6 +6,7 @@ import {
   getHomePage,
   setupProfile,
   setupPersistantMenu,
+  handleReserveTable,
 } from "../controllers/HomeController.js";
 
 let router = express.Router();
@@ -22,6 +23,8 @@ let initWebRoutes = (app) => {
   router.get("/hello", (req, res) => {
     res.send("hello");
   });
+
+  router.get("/reserve-table", handleReserveTable);
 
   return app.use("/", router);
 };
