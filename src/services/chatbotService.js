@@ -2,7 +2,9 @@ import dotenv from "dotenv";
 import request from "request";
 
 dotenv.config();
+
 const ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+
 const IMAGE_GET_STARTED =
   "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
 const IMAGE_MAIN_MENU_1 =
@@ -11,6 +13,19 @@ const IMAGE_MAIN_MENU_2 =
   "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
 const IMAGE_MAIN_MENU_3 =
   "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+const IMAGE_LUNCH_MENU_1 =
+  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+const IMAGE_LUNCH_MENU_2 =
+  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+const IMAGE_LUNCH_MENU_3 =
+  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+const IMAGE_DINNER_MENU_1 =
+  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+const IMAGE_DINNER_MENU_2 =
+  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+const IMAGE_DINNER_MENU_3 =
+  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+
 const callSendAPI = (sender_psid, response) => {
   let request_body = {
     recipient: {
@@ -225,7 +240,7 @@ const getLunchMenuTemplate = () => {
           {
             title: "Món tráng miệng",
             subtitle: "Nhà hàng có nhiều món tráng miệng hấp dẫn",
-            image_url: IMAGE_MAIN_MENU_1,
+            image_url: IMAGE_LUNCH_MENU_1,
             buttons: [
               {
                 //VIEW_APPERTIZER
@@ -238,7 +253,7 @@ const getLunchMenuTemplate = () => {
           {
             title: "Cá bảy chép",
             subtitle: "Cá tươi",
-            image_url: IMAGE_MAIN_MENU_2,
+            image_url: IMAGE_LUNCH_MENU_2,
             buttons: [
               {
                 type: "postback",
@@ -250,12 +265,24 @@ const getLunchMenuTemplate = () => {
           {
             title: "Thịt hun khói",
             subtitle: "Đảm bảo chất lượng",
-            image_url: IMAGE_MAIN_MENU_3,
+            image_url: IMAGE_LUNCH_MENU_3,
             buttons: [
               {
                 type: "postback",
                 title: "XEM CHI TIẾT",
                 payload: "VIEW_MEAT",
+              },
+            ],
+          },
+          {
+            title: "Quay trở lại",
+            subtitle: "Quay trở lại Menu chính",
+            image_url: IMAGE_LUNCH_MENU_3,
+            buttons: [
+              {
+                type: "postback",
+                title: "QUAY TRỞ LẠI",
+                payload: "BACK_TO_MAIN_MENU",
               },
             ],
           },
@@ -265,6 +292,7 @@ const getLunchMenuTemplate = () => {
   };
   return response;
 };
+
 const getDinnerMenuTemplate = () => {
   let response = {
     attachment: {
@@ -273,50 +301,39 @@ const getDinnerMenuTemplate = () => {
         template_type: "generic",
         elements: [
           {
-            title: "Menu của chúng tôi",
-            subtitle:
-              "Chúng tôi hân hạnh mang đến cho bạn những trải nghiệm tuyệt vời",
-            image_url: IMAGE_MAIN_MENU_1,
+            title: "Món tráng miệng",
+            subtitle: "Nhà hàng có nhiều món tráng miệng hấp dẫn",
+            image_url: IMAGE_DINNER_MENU_1,
             buttons: [
               {
+                //VIEW_APPERTIZER
                 type: "postback",
-                title: "BỮA TRƯA",
-                payload: "LUNCH_MENU",
-              },
-              {
-                type: "postback",
-                title: "BỮA TỐI",
-                payload: "DINNER_MENU",
-              },
-              {
-                type: "postback",
-                title: "HƯỚNG DẪN SỬ DỤNG BOT",
-                payload: "GUIDE_TO_USE",
+                title: "XEM CHI TIẾT",
+                payload: "VIEW_APPERTIZER",
               },
             ],
           },
           {
-            title: "Giờ mở cửa",
-            subtitle:
-              "Chúng tôi hân hạnh mang đến cho bạn những trải nghiệm tuyệt vời",
-            image_url: IMAGE_MAIN_MENU_2,
+            title: "Cá bảy chép",
+            subtitle: "Cá tươi",
+            image_url: IMAGE_DINNER_MENU_2,
             buttons: [
               {
                 type: "postback",
-                title: "ĐẶT BÀN",
-                payload: "RESERVE_TABLE",
+                title: "XEM CHI TIẾT",
+                payload: "VIEW_FISH",
               },
             ],
           },
           {
-            title: "Không gian nhà hàng",
-            subtitle: "Nhà hàng có sức chứa lên đến 300 khách",
-            image_url: IMAGE_MAIN_MENU_3,
+            title: "Thịt hun khói",
+            subtitle: "Đảm bảo chất lượng",
+            image_url: IMAGE_DINNER_MENU_3,
             buttons: [
               {
                 type: "postback",
-                title: "Chi Tiết",
-                payload: "SHOW_ROOMS",
+                title: "XEM CHI TIẾT",
+                payload: "VIEW_MEAT",
               },
             ],
           },

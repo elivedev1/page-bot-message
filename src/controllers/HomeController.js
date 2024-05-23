@@ -171,6 +171,10 @@ export const handlePostback = async (sender_psid, received_postback) => {
       // await handleSendDinnerMenu(sender_psid);
       break;
 
+    case "BACK_TO_MAIN_MENU":
+      // await handleSendDinnerMenu(sender_psid);
+      break;
+
     default:
       response = { text: `I don't know response with postback ${payload}` };
       break;
