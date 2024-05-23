@@ -295,5 +295,5 @@ export const setupPersistantMenu = async (req, res) => {
 };
 
 export const handleReserveTable = (req, res) => {
-  return res.render("reserve-table.ejs");
+  return res.render("reserve-table");
 };

@@ -20,10 +20,6 @@ let initWebRoutes = (app) => {
   router.post("/webhook", postWebhook);
   router.get("/webhook", getWebhook);
 
-  router.get("/hello", (req, res) => {
-    res.send("hello");
-  });
-
   router.get("/reserve-table", handleReserveTable);
 
   return app.use("/", router);
