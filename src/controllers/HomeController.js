@@ -3,6 +3,8 @@ import request from "request";
 import {
   handleGetStarted,
   handleSendMainMenu,
+  handleSendLunchMenu,
+  handleSendDinnerMenu,
 } from "../services/chatbotService.js";
 dotenv.config();
 
@@ -135,6 +137,38 @@ export const handlePostback = async (sender_psid, received_postback) => {
 
     case "MAIN_MENU":
       await handleSendMainMenu(sender_psid);
+      break;
+
+    case "LUNCH_MENU":
+      await handleSendLunchMenu(sender_psid);
+      break;
+
+    case "DINNER_MENU":
+      await handleSendDinnerMenu(sender_psid);
+      break;
+
+    case "VIEW_APPERTIZER":
+      // await handleSendDinnerMenu(sender_psid);
+      break;
+
+    case "VIEW_FISH":
+      // await handleSendDinnerMenu(sender_psid);
+      break;
+
+    case "VIEW_MEAT":
+      // await handleSendDinnerMenu(sender_psid);
+      break;
+
+    case "RESERVE_TABLE":
+      // await handleSendDinnerMenu(sender_psid);
+      break;
+
+    case "SHOW_ROOMS":
+      // await handleSendDinnerMenu(sender_psid);
+      break;
+
+    case "GUIDE_TO_USE":
+      // await handleSendDinnerMenu(sender_psid);
       break;
 
     default:
