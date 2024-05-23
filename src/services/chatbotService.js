@@ -33,7 +33,7 @@ export const handleGetStarted = () => {
   return Promise(async (resolve, reject) => {
     try {
       let response = { text: "Ok. Chào mừng bạn đến với chúng tôi" };
-      await this.callSendAPI(response);
+      await callSendAPI(response);
       resolve("done");
     } catch (err) {
       reject(err);
