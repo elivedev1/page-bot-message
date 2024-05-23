@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import request from "request";
+import { handleGetStarted } from "../services/chatbotService.js";
 dotenv.config();
 
 const ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
@@ -108,7 +109,7 @@ export const handleMessage = (sender_psid, received_message) => {
 };
 
 // Handles messaging_postbacks events
-export const handlePostback = (sender_psid, received_postback) => {
+export const handlePostback = async (sender_psid, received_postback) => {
   let response;
 
   // Get the payload for the postback
@@ -123,7 +124,7 @@ export const handlePostback = (sender_psid, received_postback) => {
       response = { text: "Oops, try sending another image." };
       break;
     case "GET_STARTED":
-      response = { text: "Ok. Chào mừng bạn đến với chúng tôi" };
+      await handleGetStarted();
       break;
 
     default:
