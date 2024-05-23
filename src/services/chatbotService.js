@@ -308,11 +308,9 @@ const getStartedTemplate = () => {
                 payload: "MAIN_MENU",
               },
               {
-                type: "web_url",
-                url: `${process.env.URL_WEB_VIEW_ORDER}`,
+                type: "postback",
                 title: "ĐẶT BÀN",
-                webview_height_tatio: "tall",
-                messenger_extensions: true,
+                payload: "RESERVE_TABLE",
               },
               {
                 type: "postback",
