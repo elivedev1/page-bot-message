@@ -3,6 +3,8 @@ import request from "request";
 
 dotenv.config();
 const ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const IMAGE_GET_STARTED =
+  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
 
 const callSendAPI = (sender_psid, response) => {
   let request_body = {
@@ -53,13 +55,54 @@ export const handleGetStarted = (sender_psid) => {
   return new Promise(async (resolve, reject) => {
     try {
       let username = await getUserName(sender_psid);
-      let response = {
+      let response1 = {
         text: `Ok. Chào mừng bạn ${username} đến với kênh chúng tôi`,
       };
-      await callSendAPI(sender_psid, response);
+      let response2 = sendGetStartedTemplate();
+
+      await callSendAPI(sender_psid, response1);
+
+      await callSendAPI(sender_psid, response2);
+
       resolve("done");
     } catch (err) {
       reject(err);
     }
   });
+};
+
+const sendGetStartedTemplate = () => {
+  let response = {
+    attachment: {
+      type: "template",
+      payload: {
+        template_type: "generic",
+        elements: [
+          {
+            title: "Xin chào bạn đến với kênh của chúng tôi",
+            subtitle: "Dưới đây là các lựa chọn",
+            image_url: IMAGE_GET_STARTED,
+            buttons: [
+              {
+                type: "postback",
+                title: "MENU CHÍNH",
+                payload: "MAIN_MENU",
+              },
+              {
+                type: "postback",
+                title: "ĐẶT",
+                payload: "RESERVE_TABLE",
+              },
+              {
+                type: "postback",
+                title: "HƯỚNG DẪN SỬ DỤNG BOT",
+                payload: "GUIDE_TO_USE",
+              },
+            ],
+          },
+        ],
+      },
+    },
+  };
+  return response;
 };
