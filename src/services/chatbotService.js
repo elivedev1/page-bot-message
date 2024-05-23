@@ -4,7 +4,7 @@ import request from "request";
 dotenv.config();
 const ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
-export const callSendAPI = (res) => {
+export const callSendAPI = (sender_psid, response) => {
   let request_body = {
     recipient: {
       id: sender_psid,
@@ -29,11 +29,11 @@ export const callSendAPI = (res) => {
     }
   );
 };
-export const handleGetStarted = () => {
+export const handleGetStarted = (sender_psid) => {
   return Promise(async (resolve, reject) => {
     try {
       let response = { text: "Ok. Chào mừng bạn đến với chúng tôi" };
-      await callSendAPI(response);
+      await callSendAPI(sender_psid, response);
       resolve("done");
     } catch (err) {
       reject(err);
