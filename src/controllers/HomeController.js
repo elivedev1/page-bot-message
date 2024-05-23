@@ -6,6 +6,9 @@ import {
   handleSendLunchMenu,
   handleSendDinnerMenu,
   handleBackToMainMenu,
+  handleDetailViewAppertizer,
+  handleDetailViewFish,
+  handleDetailViewMeat,
 } from "../services/chatbotService.js";
 dotenv.config();
 
@@ -149,15 +152,15 @@ export const handlePostback = async (sender_psid, received_postback) => {
       break;
 
     case "VIEW_APPERTIZER":
-      // await handleSendDinnerMenu(sender_psid);
+      await handleDetailViewAppertizer(sender_psid);
       break;
 
     case "VIEW_FISH":
-      // await handleSendDinnerMenu(sender_psid);
+      await handleDetailViewFish(sender_psid);
       break;
 
     case "VIEW_MEAT":
-      // await handleSendDinnerMenu(sender_psid);
+      await handleDetailViewMeat(sender_psid);
       break;
 
     case "RESERVE_TABLE":

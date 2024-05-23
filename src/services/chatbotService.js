@@ -136,6 +136,46 @@ export const handleBackToMainMenu = async (sender_psid) => {
   await handleSendMainMenu(sender_psid);
 };
 
+export const handleDetailViewAppertizer = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response1 = getDetailViewAppertizerTemplate();
+
+      await callSendAPI(sender_psid, response1);
+
+      resolve("done");
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+export const handleDetailViewFish = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response1 = getDetailViewFishTemplate();
+
+      await callSendAPI(sender_psid, response1);
+
+      resolve("done");
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+export const handleDetailViewMeat = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let response1 = getDetailViewMeatTemplate();
+
+      await callSendAPI(sender_psid, response1);
+
+      resolve("done");
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
 const getStartedTemplate = () => {
   let response = {
     attachment: {
@@ -348,7 +388,7 @@ const getDinnerMenuTemplate = () => {
   return response;
 };
 
-const getBackToMainMenuTemplate = () => {
+const getDetailViewAppertizerTemplate = () => {
   let response = {
     attachment: {
       type: "template",
@@ -356,39 +396,111 @@ const getBackToMainMenuTemplate = () => {
         template_type: "generic",
         elements: [
           {
-            title: "Món tráng miệng",
-            subtitle: "Nhà hàng có nhiều món tráng miệng hấp dẫn",
+            title: "Dưa hấu",
+            subtitle: "50.000/1Kg",
             image_url: IMAGE_DINNER_MENU_1,
-            buttons: [
-              {
-                //VIEW_APPERTIZER
-                type: "postback",
-                title: "XEM CHI TIẾT",
-                payload: "VIEW_APPERTIZER",
-              },
-            ],
           },
           {
-            title: "Cá bảy chép",
-            subtitle: "Cá tươi",
+            title: "Xoài",
+            subtitle: "20.000/1Kg",
             image_url: IMAGE_DINNER_MENU_2,
-            buttons: [
-              {
-                type: "postback",
-                title: "XEM CHI TIẾT",
-                payload: "VIEW_FISH",
-              },
-            ],
           },
           {
-            title: "Thịt hun khói",
-            subtitle: "Đảm bảo chất lượng",
+            title: "Ổi",
+            subtitle: "30.000/1Kg",
+            image_url: IMAGE_DINNER_MENU_3,
+          },
+          {
+            title: "Quay Trở Lại",
+            subtitle: "Quay trở lại main menu",
             image_url: IMAGE_DINNER_MENU_3,
             buttons: [
               {
                 type: "postback",
-                title: "XEM CHI TIẾT",
-                payload: "VIEW_MEAT",
+                title: "QUAY TRỞ LẠI",
+                payload: "BACK_TO_MAIN_MENU",
+              },
+            ],
+          },
+        ],
+      },
+    },
+  };
+  return response;
+};
+
+const getDetailViewFishTemplate = () => {
+  let response = {
+    attachment: {
+      type: "template",
+      payload: {
+        template_type: "generic",
+        elements: [
+          {
+            title: "Cá Hồi",
+            subtitle: "50.000/1Kg",
+            image_url: IMAGE_DINNER_MENU_1,
+          },
+          {
+            title: "Cá Lóc",
+            subtitle: "20.000/1Kg",
+            image_url: IMAGE_DINNER_MENU_2,
+          },
+          {
+            title: "Cá Mặn",
+            subtitle: "30.000/1Kg",
+            image_url: IMAGE_DINNER_MENU_3,
+          },
+          {
+            title: "Quay Trở Lại",
+            subtitle: "Quay trở lại main menu",
+            image_url: IMAGE_DINNER_MENU_3,
+            buttons: [
+              {
+                type: "postback",
+                title: "QUAY TRỞ LẠI",
+                payload: "BACK_TO_MAIN_MENU",
+              },
+            ],
+          },
+        ],
+      },
+    },
+  };
+  return response;
+};
+
+const getDetailViewMeatTemplate = () => {
+  let response = {
+    attachment: {
+      type: "template",
+      payload: {
+        template_type: "generic",
+        elements: [
+          {
+            title: "Thịt Heo",
+            subtitle: "50.000/1Kg",
+            image_url: IMAGE_DINNER_MENU_1,
+          },
+          {
+            title: "Thịt Bò",
+            subtitle: "20.000/1Kg",
+            image_url: IMAGE_DINNER_MENU_2,
+          },
+          {
+            title: "Thịt Lợn",
+            subtitle: "30.000/1Kg",
+            image_url: IMAGE_DINNER_MENU_3,
+          },
+          {
+            title: "Quay Trở Lại",
+            subtitle: "Quay trở lại main menu",
+            image_url: IMAGE_DINNER_MENU_3,
+            buttons: [
+              {
+                type: "postback",
+                title: "QUAY TRỞ LẠI",
+                payload: "BACK_TO_MAIN_MENU",
               },
             ],
           },
