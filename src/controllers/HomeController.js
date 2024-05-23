@@ -5,6 +5,7 @@ import {
   handleSendMainMenu,
   handleSendLunchMenu,
   handleSendDinnerMenu,
+  handleBackToMainMenu,
 } from "../services/chatbotService.js";
 dotenv.config();
 
@@ -172,7 +173,7 @@ export const handlePostback = async (sender_psid, received_postback) => {
       break;
 
     case "BACK_TO_MAIN_MENU":
-      // await handleSendDinnerMenu(sender_psid);
+      await handleBackToMainMenu(sender_psid);
       break;
 
     default:

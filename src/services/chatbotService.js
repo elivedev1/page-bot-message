@@ -132,6 +132,10 @@ export const handleSendDinnerMenu = (sender_psid) => {
   });
 };
 
+export const handleBackToMainMenu = async (sender_psid) => {
+  await handleSendMainMenu(sender_psid);
+};
+
 const getStartedTemplate = () => {
   let response = {
     attachment: {
@@ -294,6 +298,57 @@ const getLunchMenuTemplate = () => {
 };
 
 const getDinnerMenuTemplate = () => {
+  let response = {
+    attachment: {
+      type: "template",
+      payload: {
+        template_type: "generic",
+        elements: [
+          {
+            title: "Món tráng miệng",
+            subtitle: "Nhà hàng có nhiều món tráng miệng hấp dẫn",
+            image_url: IMAGE_DINNER_MENU_1,
+            buttons: [
+              {
+                //VIEW_APPERTIZER
+                type: "postback",
+                title: "XEM CHI TIẾT",
+                payload: "VIEW_APPERTIZER",
+              },
+            ],
+          },
+          {
+            title: "Cá bảy chép",
+            subtitle: "Cá tươi",
+            image_url: IMAGE_DINNER_MENU_2,
+            buttons: [
+              {
+                type: "postback",
+                title: "XEM CHI TIẾT",
+                payload: "VIEW_FISH",
+              },
+            ],
+          },
+          {
+            title: "Thịt hun khói",
+            subtitle: "Đảm bảo chất lượng",
+            image_url: IMAGE_DINNER_MENU_3,
+            buttons: [
+              {
+                type: "postback",
+                title: "XEM CHI TIẾT",
+                payload: "VIEW_MEAT",
+              },
+            ],
+          },
+        ],
+      },
+    },
+  };
+  return response;
+};
+
+const getBackToMainMenuTemplate = () => {
   let response = {
     attachment: {
       type: "template",
