@@ -9,6 +9,7 @@ import {
   handleDetailViewAppertizer,
   handleDetailViewFish,
   handleDetailViewMeat,
+  handleShowDetailRooms,
 } from "../services/chatbotService.js";
 dotenv.config();
 
@@ -168,7 +169,7 @@ export const handlePostback = async (sender_psid, received_postback) => {
       break;
 
     case "SHOW_ROOMS":
-      // await handleSendDinnerMenu(sender_psid);
+      await handleShowDetailRooms(sender_psid);
       break;
 
     case "GUIDE_TO_USE":

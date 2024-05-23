@@ -25,7 +25,8 @@ const IMAGE_DINNER_MENU_2 =
   "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
 const IMAGE_DINNER_MENU_3 =
   "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
-
+const IMAGE_DETAIL_ROOMS =
+  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
 const callSendAPI = async (sender_psid, response) => {
   let request_body = {
     recipient: {
@@ -171,6 +172,61 @@ export const handleDetailViewMeat = (sender_psid) => {
       let response1 = getDetailViewMeatTemplate();
 
       await callSendAPI(sender_psid, response1);
+
+      resolve("done");
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+let getImageRoomsTemplate = () => {
+  let response = {
+    attachment: {
+      type: "image",
+      payload: {
+        url: IMAGE_DETAIL_ROOMS,
+        is_reusable: true,
+      },
+    },
+  };
+  return response;
+};
+
+let getButtonRoomsTemplate = () => {
+  let response = {
+    attachment: {
+      type: "template",
+      payload: {
+        template_type: "button",
+        text: "Nhà hàng có thể phục vụ tối đa 300 khách",
+        buttons: [
+          {
+            type: "postback",
+            title: "MENU CHÍNH",
+            payload: "MAIN_MENU",
+          },
+          {
+            type: "postback",
+            title: "ĐẶT BÀN",
+            payload: "RESERVE_TABLE",
+          },
+        ],
+      },
+    },
+  };
+  return response;
+};
+
+export const handleShowDetailRooms = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      //
+      let response1 = getImageRoomsTemplate();
+      let response2 = getButtonRoomsTemplate();
+
+      await callSendAPI(sender_psid, response1);
+      await callSendAPI(sender_psid, response2);
 
       resolve("done");
     } catch (err) {
