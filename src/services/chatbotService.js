@@ -308,7 +308,7 @@ const getStartedTemplate = () => {
               },
               {
                 type: "web_url",
-                url: "",
+                url: `${process.env.URL_WEB_VIEW_ORDER}`,
                 title: "ĐẶT BÀN",
                 webview_height_tatio: "tall",
                 messenger_extensions: true,
@@ -365,7 +365,7 @@ const getMainMenuTemplate = () => {
             buttons: [
               {
                 type: "web_url",
-                url: "",
+                url: `${process.env.URL_WEB_VIEW_ORDER}`,
                 title: "ĐẶT BÀN",
                 webview_height_tatio: "tall",
                 messenger_extensions: true,
