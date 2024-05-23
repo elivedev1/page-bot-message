@@ -2,6 +2,8 @@ import dotenv from "dotenv";
 import request from "request";
 dotenv.config();
 
+const ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+
 export let getHomePage = (req, res) => {
   return res.render("homepage.ejs");
 };
@@ -117,6 +119,8 @@ export const handlePostback = (sender_psid, received_postback) => {
     response = { text: "Thanks!" };
   } else if (payload === "no") {
     response = { text: "Oops, try sending another image." };
+  } else if (payload === "GET_STARTED") {
+    response = { text: "Ok. Chào mừng bạn đến với chúng tôi" };
   }
 
   // Send the message to acknowledge the postback
@@ -136,7 +140,7 @@ export const callSendAPI = (sender_psid, response) => {
   request(
     {
       url: "https://graph.facebook.com/v20.0/me/messages",
-      qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+      qs: { access_token: ACCESS_TOKEN },
       method: "POST",
       json: request_body,
     },
@@ -150,28 +154,29 @@ export const callSendAPI = (sender_psid, response) => {
   );
 };
 
-export const setupProfile = (req, res) => {
+export const setupProfile = async (req, res) => {
   let request_body = {
-    recipient: {
-      id: sender_psid,
-    },
-    message: response,
+    get_started: { payload: "GET_STARTED" },
+    whitelisted_domains: ["https://page-bot-message.onrender.com/"],
   };
 
   // Send the HTTP request to the Messenger Platform
-  request(
+  await request(
     {
-      url: "https://graph.facebook.com/v20.0/me/messages",
-      qs: { access_token: process.env.PAGE_ACCESS_TOKEN },
+      url: `https://graph.facebook.com/v20.0/me/messenger_profile?access_token=${ACCESS_TOKEN}`,
+      qs: { access_token: ACCESS_TOKEN },
       method: "POST",
       json: request_body,
     },
     (err, res, body) => {
+      console.log(body);
       if (!err) {
-        console.log("message sent!");
+        console.log("setup use profile success!");
       } else {
         console.error("Unable to send message:" + err);
       }
     }
   );
+
+  return res.send("setup use profile success!");
 };
