@@ -26,13 +26,16 @@ const IMAGE_DINNER_MENU_2 =
 const IMAGE_DINNER_MENU_3 =
   "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
 
-const callSendAPI = (sender_psid, response) => {
+const callSendAPI = async (sender_psid, response) => {
   let request_body = {
     recipient: {
       id: sender_psid,
     },
     message: response,
   };
+
+  await sendMarkReadMessage(sender_psid);
+  await sendTypingOn(sender_psid);
 
   // Send the HTTP request to the Messenger Platform
   request(
@@ -174,6 +177,58 @@ export const handleDetailViewMeat = (sender_psid) => {
       reject(err);
     }
   });
+};
+
+const sendTypingOn = (sender_psid) => {
+  let request_body = {
+    recipient: {
+      id: sender_psid,
+    },
+    sender_action: "typing_on",
+  };
+
+  // Send the HTTP request to the Messenger Platform
+  request(
+    {
+      url: "https://graph.facebook.com/v20.0/me/messages",
+      qs: { access_token: ACCESS_TOKEN },
+      method: "POST",
+      json: request_body,
+    },
+    (err, res, body) => {
+      if (!err) {
+        console.log("send typing On sent!");
+      } else {
+        console.error("Unable to send send typing On:" + err);
+      }
+    }
+  );
+};
+
+const sendMarkReadMessage = (sender_psid) => {
+  let request_body = {
+    recipient: {
+      id: sender_psid,
+    },
+    sender_action: "mark_seen",
+  };
+
+  // Send the HTTP request to the Messenger Platform
+  request(
+    {
+      url: "https://graph.facebook.com/v20.0/me/messages",
+      qs: { access_token: ACCESS_TOKEN },
+      method: "POST",
+      json: request_body,
+    },
+    (err, res, body) => {
+      if (!err) {
+        console.log("send typing On sent!");
+      } else {
+        console.error("Unable to send send typing On:" + err);
+      }
+    }
+  );
 };
 
 const getStartedTemplate = () => {
