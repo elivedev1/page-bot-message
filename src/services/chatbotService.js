@@ -310,7 +310,7 @@ const getStartedTemplate = () => {
                 // title: "ĐẶT BÀN",
                 // payload: "RESERVE_TABLE",
 
-                type: "postback",
+                type: "web_url",
                 url: `${process.env.URL_WEB_VIEW_ORDER}`,
                 title: "ĐẶT BÀN",
                 webview_height_ratio: "tall",
