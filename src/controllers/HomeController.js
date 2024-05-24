@@ -11,7 +11,6 @@ import {
   handleDetailViewMeat,
   handleShowDetailRooms,
   callSendAPI,
-  callSendAPINoUserAction,
 } from "../services/chatbotService.js";
 dotenv.config();
 
@@ -291,7 +290,7 @@ export const handlePostReserveTable = async (req, res) => {
     \nSố điện thoại: ${req.body.phoneNumber}`,
     };
 
-    await callSendAPINoUserAction(req.body.psid, response1);
+    await callSendAPI(req.body.psid, response1);
 
     return res.status(200).json({
       message: "ok",

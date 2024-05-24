@@ -47,11 +47,11 @@ export const callSendAPI = async (sender_psid, response) => {
       json: request_body,
     },
     (err, res, body) => {
-      console.log(body);
       if (!err) {
         console.log("SEND OK");
       } else {
         console.error("ERROR" + err);
+        console.log(body);
       }
     }
   );
