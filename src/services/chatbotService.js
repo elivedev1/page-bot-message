@@ -47,32 +47,6 @@ export const callSendAPI = async (sender_psid, response) => {
       json: request_body,
     },
     (err, res, body) => {
-      if (!err) {
-        console.log("SEND OK");
-      } else {
-        console.error("ERROR" + err);
-        console.log(body);
-      }
-    }
-  );
-};
-
-export const callSendAPINoUserAction = async (sender_psid, response) => {
-  let request_body = {
-    recipient: {
-      id: sender_psid,
-    },
-    message: response,
-  };
-  // Send the HTTP request to the Messenger Platform
-  request(
-    {
-      url: "https://graph.facebook.com/v20.0/me/messages",
-      qs: { access_token: ACCESS_TOKEN },
-      method: "POST",
-      json: request_body,
-    },
-    (err, res, body) => {
       console.log(body);
       if (!err) {
         console.log("SEND OK");
@@ -82,6 +56,7 @@ export const callSendAPINoUserAction = async (sender_psid, response) => {
     }
   );
 };
+
 const getUserName = (sender_psid) => {
   return new Promise((resolve, reject) => {
     request(
@@ -303,9 +278,9 @@ const sendTypingOn = (sender_psid) => {
     },
     (err, res, body) => {
       if (!err) {
-        console.log("send typing On sent!");
+        console.log("SEND TYPING OK");
       } else {
-        console.error("Unable to send send typing On:" + err);
+        console.error("SEND TYPE ERROR :" + err);
       }
     }
   );
@@ -329,9 +304,9 @@ const sendMarkReadMessage = (sender_psid) => {
     },
     (err, res, body) => {
       if (!err) {
-        console.log("send typing On sent!");
+        console.log("SEND MARK READ OK ");
       } else {
-        console.error("Unable to send send typing On:" + err);
+        console.error("SEND MARK READ ERROR:" + err);
       }
     }
   );
