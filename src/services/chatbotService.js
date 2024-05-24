@@ -330,15 +330,15 @@ const getStartedTemplate = () => {
                 payload: "MAIN_MENU",
               },
               {
-                // type: "postback",
-                // title: "ĐẶT BÀN",
-                // payload: "RESERVE_TABLE",
-
-                type: "web_url",
-                url: `${process.env.URL_WEB_VIEW_ORDER}`,
+                type: "postback",
                 title: "ĐẶT BÀN",
-                webview_height_ratio: "tall",
-                messenger_extensions: true,
+                payload: "RESERVE_TABLE",
+
+                // type: "web_url",
+                // url: `${process.env.URL_WEB_VIEW_ORDER}`,
+                // title: "ĐẶT BÀN",
+                // webview_height_ratio: "tall",
+                // messenger_extensions: true,
               },
               {
                 type: "postback",
