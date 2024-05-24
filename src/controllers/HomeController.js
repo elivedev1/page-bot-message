@@ -10,7 +10,6 @@ import {
   handleDetailViewFish,
   handleDetailViewMeat,
   handleShowDetailRooms,
-  callSendAPI,
 } from "../services/chatbotService.js";
 dotenv.config();
 
