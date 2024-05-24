@@ -314,42 +314,40 @@ const sendMarkReadMessage = (sender_psid) => {
 
 const getStartedTemplate = () => {
   let response = {
-    message: {
-      attachment: {
-        type: "template",
-        payload: {
-          template_type: "generic",
-          elements: [
-            {
-              title: "Xin chào bạn đến với kênh của chúng tôi",
-              subtitle: "Dưới đây là các lựa chọn",
-              image_url: IMAGE_GET_STARTED,
-              buttons: [
-                {
-                  type: "postback",
-                  title: "MENU CHÍNH",
-                  payload: "MAIN_MENU",
-                },
-                {
-                  // type: "postback",
-                  // title: "ĐẶT BÀN",
-                  // payload: "RESERVE_TABLE",
+    attachment: {
+      type: "template",
+      payload: {
+        template_type: "generic",
+        elements: [
+          {
+            title: "Xin chào bạn đến với kênh của chúng tôi",
+            subtitle: "Dưới đây là các lựa chọn",
+            image_url: IMAGE_GET_STARTED,
+            buttons: [
+              {
+                type: "postback",
+                title: "MENU CHÍNH",
+                payload: "MAIN_MENU",
+              },
+              {
+                // type: "postback",
+                // title: "ĐẶT BÀN",
+                // payload: "RESERVE_TABLE",
 
-                  type: "web_url",
-                  url: `${process.env.URL_WEB_VIEW_ORDER}`,
-                  title: "ĐẶT BÀN",
-                  webview_height_ratio: "tall",
-                  messenger_extensions: true,
-                },
-                {
-                  type: "postback",
-                  title: "HƯỚNG DẪN SỬ DỤNG BOT",
-                  payload: "GUIDE_TO_USE",
-                },
-              ],
-            },
-          ],
-        },
+                type: "web_url",
+                url: `${process.env.URL_WEB_VIEW_ORDER}`,
+                title: "ĐẶT BÀN",
+                webview_height_ratio: "tall",
+                messenger_extensions: true,
+              },
+              {
+                type: "postback",
+                title: "HƯỚNG DẪN SỬ DỤNG BOT",
+                payload: "GUIDE_TO_USE",
+              },
+            ],
+          },
+        ],
       },
     },
   };
