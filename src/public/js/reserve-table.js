@@ -56,6 +56,9 @@ function validateInputFields() {
 function handleClickButtonReserveTable() {
   $("#btnReserveTable").on("click", function (e) {
     console.log("!!! Click button đặt bàn");
+    console.log(`!!! 
+        ${window.location.origin}/reserve-table-ajax`);
+
     let check = validateInputFields(); //return true or false
 
     let data = {
