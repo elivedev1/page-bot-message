@@ -47,11 +47,13 @@ export const callSendAPI = async (sender_psid, response) => {
       json: request_body,
     },
     (err, res, body) => {
+      console.log(err);
+      console.log(res);
       console.log(body);
       if (!err) {
-        console.log("message sent!");
+        console.log("SEND OK");
       } else {
-        console.error("Unable to send message:" + err);
+        console.error("ERROR" + err);
       }
     }
   );
@@ -75,9 +77,9 @@ export const callSendAPINoUserAction = async (sender_psid, response) => {
     (err, res, body) => {
       console.log(body);
       if (!err) {
-        console.log("message sent!");
+        console.log("SEND OK");
       } else {
-        console.error("Unable to send message:" + err);
+        console.error("ERROR" + err);
       }
     }
   );
