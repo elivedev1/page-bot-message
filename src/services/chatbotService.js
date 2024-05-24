@@ -50,8 +50,10 @@ export const callSendAPI = async (sender_psid, response) => {
       console.log(body);
       if (!err) {
         console.log("SEND OK");
+        console.log("----------------------------------------------------");
       } else {
         console.error("ERROR" + err);
+        console.log("----------------------------------------------------");
       }
     }
   );
@@ -278,7 +280,6 @@ const sendTypingOn = (sender_psid) => {
     },
     (err, res, body) => {
       if (!err) {
-        console.log("SEND TYPING OK");
       } else {
         console.error("SEND TYPE ERROR :" + err);
       }
@@ -304,7 +305,6 @@ const sendMarkReadMessage = (sender_psid) => {
     },
     (err, res, body) => {
       if (!err) {
-        console.log("SEND MARK READ OK ");
       } else {
         console.error("SEND MARK READ ERROR:" + err);
       }
