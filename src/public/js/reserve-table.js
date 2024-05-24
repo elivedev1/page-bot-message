@@ -54,6 +54,7 @@ function validateInputFields() {
 }
 
 function handleClickButtonReserveTable() {
+  console.log("!!! Click button đặt bàn");
   $("#btnReserveTable").on("click", function (e) {
     let check = validateInputFields(); //return true or false
 

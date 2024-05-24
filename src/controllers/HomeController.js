@@ -297,7 +297,8 @@ export const setupPersistantMenu = async (req, res) => {
 export const handleReserveTable = (req, res) => {
   return res.render("reserve-table.ejs");
 };
-export const handlePostrReserveTable = async (req, res) => {
+export const handlePostReserveTable = async (req, res) => {
+  console.log("!!! chạy hàm route");
   try {
     let customerName = "";
     if (req.body.customerName === "") {

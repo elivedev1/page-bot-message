@@ -7,7 +7,7 @@ import {
   setupProfile,
   setupPersistantMenu,
   handleReserveTable,
-  handlePostrReserveTable,
+  handlePostReserveTable,
 } from "../controllers/HomeController.js";
 
 let router = express.Router();
@@ -23,7 +23,7 @@ let initWebRoutes = (app) => {
 
   router.get("/reserve-table", handleReserveTable);
 
-  router.get("/reserve-table-ajax", handlePostrReserveTable);
+  router.get("/reserve-table-ajax", handlePostReserveTable);
 
   return app.use("/", router);
 };
