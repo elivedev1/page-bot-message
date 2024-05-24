@@ -10,6 +10,7 @@ import {
   handleDetailViewFish,
   handleDetailViewMeat,
   handleShowDetailRooms,
+  callSendAPI,
 } from "../services/chatbotService.js";
 dotenv.config();
 
@@ -187,33 +188,6 @@ export const handlePostback = async (sender_psid, received_postback) => {
 
   // Send the message to acknowledge the postback
   callSendAPI(sender_psid, response);
-};
-
-// Sends response messages via the Send API
-export const callSendAPI = (sender_psid, response) => {
-  let request_body = {
-    recipient: {
-      id: sender_psid,
-    },
-    message: response,
-  };
-
-  // Send the HTTP request to the Messenger Platform
-  request(
-    {
-      url: "https://graph.facebook.com/v20.0/me/messages",
-      qs: { access_token: ACCESS_TOKEN },
-      method: "POST",
-      json: request_body,
-    },
-    (err, res, body) => {
-      if (!err) {
-        console.log("message sent!");
-      } else {
-        console.error("Unable to send message:" + err);
-      }
-    }
-  );
 };
 
 export const setupProfile = async (req, res) => {
