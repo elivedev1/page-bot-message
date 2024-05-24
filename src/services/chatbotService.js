@@ -56,6 +56,32 @@ export const callSendAPI = async (sender_psid, response) => {
     }
   );
 };
+
+export const callSendAPINoUserAction = async (sender_psid, response) => {
+  let request_body = {
+    recipient: {
+      id: sender_psid,
+    },
+    message: response,
+  };
+  // Send the HTTP request to the Messenger Platform
+  request(
+    {
+      url: "https://graph.facebook.com/v20.0/me/messages",
+      qs: { access_token: ACCESS_TOKEN },
+      method: "POST",
+      json: request_body,
+    },
+    (err, res, body) => {
+      console.log(body);
+      if (!err) {
+        console.log("message sent!");
+      } else {
+        console.error("Unable to send message:" + err);
+      }
+    }
+  );
+};
 const getUserName = (sender_psid) => {
   return new Promise((resolve, reject) => {
     request(
