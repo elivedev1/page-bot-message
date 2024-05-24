@@ -10,6 +10,7 @@ import {
   handleDetailViewFish,
   handleDetailViewMeat,
   handleShowDetailRooms,
+  sendMessage,
 } from "../services/chatbotService.js";
 dotenv.config();
 
@@ -296,4 +297,34 @@ export const setupPersistantMenu = async (req, res) => {
 
 export const handleReserveTable = (req, res) => {
   return res.render("reserve-table.ejs");
+};
+export const handlePostrReserveTable = async (req, res) => {
+  try {
+    let customerName = "";
+    if (req.body.customerName === "") {
+      customerName = "Để Trống";
+    } else {
+      customerName = req.body.customerName;
+    }
+
+    // demo response with sample text
+    // you can check database for customer order's status
+    let response1 = {
+      text: `---Thông tin khách hàng đặt bàn---
+    \nHọ và tên: ${customerName}
+    \nĐịa chỉ email: ${req.body.email}
+    \nSố điện thoại: ${req.body.phoneNumber}`,
+    };
+
+    await chatbotService.sendMessage(req.body.psid, response1);
+
+    return res.status(200).json({
+      message: "ok",
+    });
+  } catch (e) {
+    console.log("Lỗi post reserver table error: " + e);
+    return res.status(500).json({
+      message: "Server error",
+    });
+  }
 };

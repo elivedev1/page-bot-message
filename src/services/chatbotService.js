@@ -27,7 +27,7 @@ const IMAGE_DINNER_MENU_3 =
   "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
 const IMAGE_DETAIL_ROOMS =
   "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
-const callSendAPI = async (sender_psid, response) => {
+export const callSendAPI = async (sender_psid, response) => {
   let request_body = {
     recipient: {
       id: sender_psid,
@@ -226,6 +226,23 @@ let getButtonRoomsTemplate = () => {
 };
 
 export const handleShowDetailRooms = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      //
+      let response1 = getImageRoomsTemplate();
+      let response2 = getButtonRoomsTemplate();
+
+      await callSendAPI(sender_psid, response1);
+      await callSendAPI(sender_psid, response2);
+
+      resolve("done");
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+export const sendMessage = (sender_psid) => {
   return new Promise(async (resolve, reject) => {
     try {
       //
