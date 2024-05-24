@@ -211,10 +211,6 @@ let getButtonRoomsTemplate = () => {
             payload: "MAIN_MENU",
           },
           {
-            // type: "postback",
-            // title: "ĐẶT BÀN",
-            // payload: "RESERVE_TABLE",
-
             type: "web_url",
             url: `${process.env.URL_WEB_VIEW_ORDER}`,
             title: "ĐẶT BÀN",
@@ -330,10 +326,6 @@ const getStartedTemplate = () => {
                 payload: "MAIN_MENU",
               },
               {
-                // type: "postback",
-                // title: "ĐẶT BÀN",
-                // payload: "RESERVE_TABLE",
-
                 type: "web_url",
                 url: `${process.env.URL_WEB_VIEW_ORDER}`,
                 title: "ĐẶT BÀN",
@@ -391,10 +383,6 @@ const getMainMenuTemplate = () => {
             image_url: IMAGE_MAIN_MENU_2,
             buttons: [
               {
-                // type: "postback",
-                // title: "ĐẶT BÀN",
-                // payload: "RESERVE_TABLE",
-
                 type: "web_url",
                 url: `${process.env.URL_WEB_VIEW_ORDER}`,
                 title: "ĐẶT BÀN",
