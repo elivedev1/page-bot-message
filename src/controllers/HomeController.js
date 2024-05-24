@@ -10,7 +10,7 @@ import {
   handleDetailViewFish,
   handleDetailViewMeat,
   handleShowDetailRooms,
-  sendMessage,
+  callSendAPI,
 } from "../services/chatbotService.js";
 dotenv.config();
 
@@ -316,7 +316,7 @@ export const handlePostrReserveTable = async (req, res) => {
     \nSố điện thoại: ${req.body.phoneNumber}`,
     };
 
-    await chatbotService.sendMessage(req.body.psid, response1);
+    await callSendAPI(req.body.psid, response1);
 
     return res.status(200).json({
       message: "ok",
