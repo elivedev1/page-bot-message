@@ -14,16 +14,15 @@ window.extAsyncInit = function () {
   // the Messenger Extensions JS SDK is done loading
 
   MessengerExtensions.getContext(
-    "423570607232707",
+    "753933095237424",
     function success(thread_context) {
       // success
       //set psid to input
       $("#psid").val(thread_context.psid);
-      console.log("messenerExtensions");
-      console.log(thread_context.psid);
       handleClickButtonReserveTable();
     },
     function error(err) {
+      // error
       console.log("Lỗi đặt bàn Eric bot", err);
     }
   );
