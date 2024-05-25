@@ -273,9 +273,7 @@ export const setupPersistantMenu = async (req, res) => {
 };
 
 export const handleReserveTable = (req, res) => {
-  let senderId = req.params.senderId;
-  senderId = senderId.split("?")[0];
-  return res.render("reserve-table.ejs", { senderId });
+  return res.render("reserve-table.ejs");
 };
 export const handlePostReserveTable = async (req, res) => {
   console.log("!!! chạy hàm route");
