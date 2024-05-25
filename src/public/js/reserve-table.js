@@ -19,10 +19,11 @@ window.extAsyncInit = function () {
       // success
       //set psid to input
       $("#psid").val(thread_context.psid);
+      console.log("messenerExtensions");
+      console.log(thread_context.psid);
       handleClickButtonReserveTable();
     },
     function error(err) {
-      // error
       console.log("Lỗi đặt bàn Eric bot", err);
     }
   );
