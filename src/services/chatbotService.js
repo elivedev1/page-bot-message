@@ -212,7 +212,7 @@ let getButtonRoomsTemplate = (sender_psid) => {
           },
           {
             type: "web_url",
-            url: `${process.env.URL_WEB_VIEW_ORDER}?senderID=${sender_psid}`,
+            url: `${process.env.URL_WEB_VIEW_ORDER}/${sender_psid}`,
             title: "ĐẶT BÀN",
             webview_height_ratio: "full",
             messenger_extensions: true,
@@ -327,7 +327,7 @@ const getStartedTemplate = (sender_psid) => {
               },
               {
                 type: "web_url",
-                url: `${process.env.URL_WEB_VIEW_ORDER}?senderID=${sender_psid}`,
+                url: `${process.env.URL_WEB_VIEW_ORDER}/${sender_psid}`,
                 title: "ĐẶT BÀN",
                 webview_height_ratio: "full",
                 messenger_extensions: true,
@@ -384,7 +384,7 @@ const getMainMenuTemplate = (sender_psid) => {
             buttons: [
               {
                 type: "web_url",
-                url: `${process.env.URL_WEB_VIEW_ORDER}?senderID=${sender_psid}`,
+                url: `${process.env.URL_WEB_VIEW_ORDER}/${sender_psid}`,
                 title: "ĐẶT BÀN",
                 webview_height_ratio: "full",
                 messenger_extensions: true,

@@ -21,7 +21,7 @@ let initWebRoutes = (app) => {
   router.post("/webhook", postWebhook);
   router.get("/webhook", getWebhook);
 
-  router.get("/reserve-table", handleReserveTable);
+  router.get("/reserve-table/:senderId", handleReserveTable);
 
   router.get("/reserve-table-ajax", handlePostReserveTable);
 
