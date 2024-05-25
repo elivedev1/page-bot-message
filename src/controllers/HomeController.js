@@ -11,6 +11,7 @@ import {
   handleDetailViewMeat,
   handleShowDetailRooms,
   callSendAPI,
+  getUserName,
 } from "../services/chatbotService.js";
 dotenv.config();
 
@@ -281,7 +282,7 @@ export const handlePostReserveTable = async (req, res) => {
   try {
     let customerName = "";
     if (req.body.customerName === "") {
-      customerName = "Để Trống";
+      customerName = getUserName(req.body.psid);
     } else {
       customerName = req.body.customerName;
     }

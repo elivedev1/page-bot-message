@@ -59,7 +59,7 @@ export const callSendAPI = async (sender_psid, response) => {
   );
 };
 
-const getUserName = (sender_psid) => {
+export const getUserName = (sender_psid) => {
   return new Promise((resolve, reject) => {
     request(
       {
