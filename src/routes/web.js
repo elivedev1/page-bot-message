@@ -23,7 +23,7 @@ let initWebRoutes = (app) => {
 
   router.get("/reserve-table/:senderId", handleReserveTable);
 
-  router.get("/reserve-table-ajax", handlePostReserveTable);
+  router.post("/reserve-table-ajax", handlePostReserveTable);
 
   return app.use("/", router);
 };
