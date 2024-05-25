@@ -193,7 +193,11 @@ export const handlePostback = async (sender_psid, received_postback) => {
 export const setupProfile = async (req, res) => {
   let request_body = {
     get_started: { payload: "GET_STARTED" },
-    whitelisted_domains: ["https://page-bot-message.onrender.com/"],
+    whitelisted_domains: [
+      "https://page-bot-message.onrender.com/",
+      "https://page-bot-message.onrender.com/reserve-table",
+      "https://page-bot-message.onrender.com/reserve-table-ajax",
+    ],
   };
 
   // Send the HTTP request to the Messenger Platform
