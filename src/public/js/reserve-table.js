@@ -22,8 +22,10 @@ window.extAsyncInit = function () {
       handleClickButtonReserveTable();
     },
     function error(err) {
-      // error
-      console.log("Lỗi đặt bàn Eric bot", err);
+      // run fallback, get userid form url
+      console.log("Lỗi đặt bàn", err);
+      $("#psid").val(senderId);
+      handleClickButtonReserveTable();
     }
   );
 };
