@@ -309,7 +309,6 @@ export const setupPersistantMenu = async (req, res) => {
 
   return res.send("setup use persistant menu success!");
 };
-
 export const handleReserveTable = (req, res) => {
   const senderId = req.params.senderId;
   return res.render("reserve-table.ejs", { senderId });

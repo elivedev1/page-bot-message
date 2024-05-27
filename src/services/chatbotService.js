@@ -27,6 +27,9 @@ const IMAGE_DINNER_MENU_3 =
   "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
 const IMAGE_DETAIL_ROOMS =
   "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+
+const IMAGE_GIF_WELCOME =
+  "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHV5ZXo1cHlwdTJpb3A5cWZicDhkNGdocnF2NmRqM2xsamhycmI1bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/z5BiSupCT8QnNwBSs3/giphy.gif";
 export const callSendAPI = async (sender_psid, response) => {
   let request_body = {
     recipient: {
@@ -84,13 +87,24 @@ export const handleGetStarted = (sender_psid) => {
     try {
       let username = await getUserName(sender_psid);
       let response1 = {
-        text: `Ok. Chào mừng bạn ${username} đến với kênh chúng tôi`,
+        text: `Chào mừng bạn ${username} đến với kênh chúng tôi`,
       };
-      let response2 = getStartedTemplate(sender_psid);
+      // let response2 = getStartedTemplate(sender_psid);
 
+      // send an image
+      let response2 = getImageGetStartedTemplate(sender_psid);
+
+      // send quick reply
+      let response3 = getStartedQuickReplyTemplate(sender_psid);
+
+      // api send welcome
       await callSendAPI(sender_psid, response1);
 
+      // api send gif welcome
       await callSendAPI(sender_psid, response2);
+
+      // api send quick reply
+      await callSendAPI(sender_psid, response3);
 
       resolve("done");
     } catch (err) {
@@ -342,6 +356,43 @@ const getStartedTemplate = (sender_psid) => {
         ],
       },
     },
+  };
+  return response;
+};
+
+const getImageGetStartedTemplate = (sender_psid) => {
+  let response = {
+    attachment: {
+      type: "image",
+      payload: {
+        url: IMAGE_GIF_WELCOME,
+        is_reusable: true,
+      },
+    },
+  };
+  return response;
+};
+
+const getStartedQuickReplyTemplate = () => {
+  let response = {
+    text: "Dưới đây là các lựa chọn :",
+    quick_replies: [
+      {
+        content_type: "text",
+        title: "MENU CHÍNH",
+        payload: "MAIN_MANU",
+      },
+      {
+        content_type: "text",
+        title: "ĐẶT BÀN",
+        payload: "<POSTBACK_PAYLOAD>",
+      },
+      {
+        content_type: "text",
+        title: "HƯỚNG DẪN SỬ DỤNG BOT",
+        payload: "GUISE_TO_USE",
+      },
+    ],
   };
   return response;
 };
