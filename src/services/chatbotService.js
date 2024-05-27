@@ -406,7 +406,7 @@ export const handleGuideToUseBot = (sender_psid) => {
         text: `Xin chào bạn ${username}, mình là chatbot.\n Để biết thêm thông tin bạn vui lòng xem video bên dưới 🤣.`,
       };
       //
-      const response2 = getImageRoomsTemplate();
+      const response2 = getBotMediaTemplate();
 
       await callSendAPI(sender_psid, response1);
       await callSendAPI(sender_psid, response2);
