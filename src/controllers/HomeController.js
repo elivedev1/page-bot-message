@@ -48,7 +48,7 @@ const writeDateToGoogleSheet = async (data) => {
   await sheet.addRow({
     "Tên FB": data.username,
     "Địa chỉ Email": data.email,
-    "Số điện thoại": data.phoneNumber,
+    "Số điện thoại": `+84 ${data.phoneNumber}`,
     "Thời gian": formattedDate,
     "Tên khách hàng": data.customerName,
   });
