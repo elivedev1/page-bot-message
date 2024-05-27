@@ -313,43 +313,43 @@ export const handleReserveTable = (req, res) => {
 };
 export const handlePostReserveTable = async (req, res) => {
   console.log("!!! chạy hàm route");
-  try {
-    const username = await getUserName(req.body.psid);
+  // try {
+  //   const username = await getUserName(req.body.psid);
 
-    // write data to excel gg sheet
-    const data = {
-      username: username,
-      email: req.body.email,
-      phoneNumber: req.body.phoneNumber,
-      customerName: req.body.customerName,
-    };
-    await writeDateToGoogleSheet(data);
+  //   // write data to excel gg sheet
+  //   const data = {
+  //     username: username,
+  //     email: req.body.email,
+  //     phoneNumber: req.body.phoneNumber,
+  //     customerName: req.body.customerName,
+  //   };
+  //   await writeDateToGoogleSheet(data);
 
-    let customerName = "";
-    if (req.body.customerName === "") {
-      customerName = username;
-    } else {
-      customerName = req.body.customerName;
-    }
+  //   let customerName = "";
+  //   if (req.body.customerName === "") {
+  //     customerName = username;
+  //   } else {
+  //     customerName = req.body.customerName;
+  //   }
 
-    // demo response with sample text
-    // you can check database for customer order's status
-    let response1 = {
-      text: `---Thông tin khách hàng đặt bàn---
-    \nHọ và tên: ${customerName}
-    \nĐịa chỉ email: ${req.body.email}
-    \nSố điện thoại: ${req.body.phoneNumber}`,
-    };
+  //   // demo response with sample text
+  //   // you can check database for customer order's status
+  //   let response1 = {
+  //     text: `---Thông tin khách hàng đặt bàn---
+  //   \nHọ và tên: ${customerName}
+  //   \nĐịa chỉ email: ${req.body.email}
+  //   \nSố điện thoại: ${req.body.phoneNumber}`,
+  //   };
 
-    await callSendAPI(req.body.psid, response1);
+  //   await callSendAPI(req.body.psid, response1);
 
-    return res.status(200).json({
-      message: "ok",
-    });
-  } catch (e) {
-    console.log("Lỗi post reserver table error: " + e);
-    return res.status(500).json({
-      message: "Server error",
-    });
-  }
+  //   return res.status(200).json({
+  //     message: "ok",
+  //   });
+  // } catch (e) {
+  //   console.log("Lỗi post reserver table error: " + e);
+  //   return res.status(500).json({
+  //     message: "Server error",
+  //   });
+  // }
 };
