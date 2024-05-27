@@ -390,16 +390,63 @@ const getStartedQuickReplyTemplate = () => {
       },
       {
         content_type: "text",
-        title: "ĐẶT BÀN",
-        payload: "<POSTBACK_PAYLOAD>",
-      },
-      {
-        content_type: "text",
         title: "HD SỬ DỤNG BOT",
         payload: "GUISE_TO_USE",
       },
     ],
   };
+  return response;
+};
+
+export const handleGuideToUseBot = (sender_psid) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const username = await getUserName(sender_psid);
+      const response1 = {
+        text: `Xin chào bạn ${username}, mình là chatbot.\n Để biết thêm thông tin bạn vui lòng xem video bên dưới 🤣.`,
+      };
+      //
+      const response2 = getImageRoomsTemplate();
+
+      await callSendAPI(sender_psid, response1);
+      await callSendAPI(sender_psid, response2);
+
+      resolve("done");
+    } catch (err) {
+      reject(err);
+    }
+  });
+};
+
+const getBotMediaTemplate = () => {
+  const response = {
+    attachment: {
+      type: "template",
+      payload: {
+        template_type: "media",
+        elements: [
+          {
+            media_type: "video",
+            attachment_id: "1792987324527051",
+            buttons: [
+              {
+                type: "postback",
+                title: "MENU CHÍNH",
+                payload: "MAIN_MENU",
+              },
+              {
+                type: "web_url",
+                title: "Tham gia group",
+                url: "https://www.youtube.com/",
+                webview_height_ratio: "full",
+              },
+            ],
+          },
+        ],
+      },
+    },
+  };
+
   return response;
 };
 

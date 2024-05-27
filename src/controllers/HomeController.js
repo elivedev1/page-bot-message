@@ -12,6 +12,7 @@ import {
   handleShowDetailRooms,
   callSendAPI,
   getUserName,
+  handleGuideToUseBot,
 } from "../services/chatbotService.js";
 import { GoogleSpreadsheet } from "google-spreadsheet";
 import moment from "moment";
@@ -120,6 +121,7 @@ export const handleMessage = async (sender_psid, received_message) => {
       await handleSendMainMenu(sender_psid);
     }
     if (received_message.quick_reply.payload === "GUIDE_TO_USE") {
+      await handleGuideToUseBot(sender_psid);
     }
     return;
   }
@@ -219,7 +221,7 @@ export const handlePostback = async (sender_psid, received_postback) => {
       break;
 
     case "GUIDE_TO_USE":
-      // await handleSendDinnerMenu(sender_psid);
+      await handleGuideToUseBot(sender_psid);
       break;
 
     case "BACK_TO_MAIN_MENU":
