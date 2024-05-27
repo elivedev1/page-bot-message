@@ -391,7 +391,7 @@ const getStartedQuickReplyTemplate = () => {
       {
         content_type: "text",
         title: "HD SỬ DỤNG BOT",
-        payload: "GUISE_TO_USE",
+        payload: "GUIDE_TO_USE",
       },
     ],
   };
