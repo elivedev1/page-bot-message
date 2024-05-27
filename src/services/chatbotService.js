@@ -426,8 +426,9 @@ const getBotMediaTemplate = () => {
         template_type: "media",
         elements: [
           {
+            // attachment_id: "1792987324527051",
             media_type: "video",
-            attachment_id: "1792987324527051",
+            url: "https://business.facebook.com/247044418494034/videos/1792987324527051",
             buttons: [
               {
                 type: "postback",
