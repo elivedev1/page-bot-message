@@ -386,7 +386,7 @@ const getStartedQuickReplyTemplate = () => {
       {
         content_type: "text",
         title: "MENU CHÍNH",
-        payload: "MAIN_MANU",
+        payload: "MAIN_MENU",
       },
       {
         content_type: "text",
