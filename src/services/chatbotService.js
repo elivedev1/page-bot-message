@@ -354,7 +354,7 @@ const getStartedTemplate = (sender_psid) => {
               },
               {
                 type: "postback",
-                title: "HƯỚNG DẪN SỬ DỤNG BOT",
+                title: "HD SỬ DỤNG BOT",
                 payload: "GUIDE_TO_USE",
               },
             ],
@@ -395,7 +395,7 @@ const getStartedQuickReplyTemplate = () => {
       },
       {
         content_type: "text",
-        title: "HƯỚNG DẪN SỬ DỤNG BOT",
+        title: "HD SỬ DỤNG BOT",
         payload: "GUISE_TO_USE",
       },
     ],
@@ -428,7 +428,7 @@ const getMainMenuTemplate = (sender_psid) => {
               },
               {
                 type: "postback",
-                title: "HƯỚNG DẪN SỬ DỤNG BOT",
+                title: "HD SỬ DỤNG BOT",
                 payload: "GUIDE_TO_USE",
               },
             ],

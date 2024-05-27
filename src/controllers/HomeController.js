@@ -111,13 +111,20 @@ export let postWebhook = (req, res) => {
   }
 };
 
-export const handleMessage = (sender_psid, received_message) => {
+export const handleMessage = async (sender_psid, received_message) => {
   let response;
 
   // Checks if the message contains text
+  if (received_message.quick_reply && received_message.quick_reply.payload) {
+    if (received_message.quick_reply.payload === "MAIN_MENU") {
+      await handleSendMainMenu(sender_psid);
+    }
+    if (received_message.quick_reply.payload === "GUIDE_TO_USE") {
+    }
+    return;
+  }
+
   if (received_message.text) {
-    // Create the payload for a basic text message, which
-    // will be added to the body of our request to the Send API
     response = {
       text: `You sent the message: "${received_message.text}". Now send me an attachment!`,
     };
