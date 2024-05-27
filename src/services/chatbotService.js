@@ -31,35 +31,41 @@ const IMAGE_DETAIL_ROOMS =
 const IMAGE_GIF_WELCOME =
   "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHV5ZXo1cHlwdTJpb3A5cWZicDhkNGdocnF2NmRqM2xsamhycmI1bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/z5BiSupCT8QnNwBSs3/giphy.gif";
 export const callSendAPI = async (sender_psid, response) => {
-  let request_body = {
-    recipient: {
-      id: sender_psid,
-    },
-    message: response,
-  };
+  return new Promise(async (resolve, reject) => {
+    try {
+      let request_body = {
+        recipient: {
+          id: sender_psid,
+        },
+        message: response,
+      };
 
-  await sendMarkReadMessage(sender_psid);
-  await sendTypingOn(sender_psid);
+      await sendMarkReadMessage(sender_psid);
+      await sendTypingOn(sender_psid);
 
-  // Send the HTTP request to the Messenger Platform
-  request(
-    {
-      url: "https://graph.facebook.com/v20.0/me/messages",
-      qs: { access_token: ACCESS_TOKEN },
-      method: "POST",
-      json: request_body,
-    },
-    (err, res, body) => {
-      console.log(body);
-      if (!err) {
-        console.log("SEND OK");
-        console.log("----------------------------------------------------");
-      } else {
-        console.error("ERROR" + err);
-        console.log("----------------------------------------------------");
-      }
+      // Send the HTTP request to the Messenger Platform
+      request(
+        {
+          url: "https://graph.facebook.com/v20.0/me/messages",
+          qs: { access_token: ACCESS_TOKEN },
+          method: "POST",
+          json: request_body,
+        },
+        (err, res, body) => {
+          console.log(body);
+          if (!err) {
+            resolve("MESSAGE SENT !");
+            console.log("----------------------------------------------------");
+          } else {
+            console.error("ERROR" + err);
+            console.log("----------------------------------------------------");
+          }
+        }
+      );
+    } catch (err) {
+      reject(err);
     }
-  );
+  });
 };
 
 export const getUserName = (sender_psid) => {
