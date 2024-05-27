@@ -13,9 +13,43 @@ import {
   callSendAPI,
   getUserName,
 } from "../services/chatbotService.js";
+import { GoogleSpreadsheet } from "google-spreadsheet";
+import moment from "moment";
+
 dotenv.config();
 
 const ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
+const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
+const GOOGLE_SERVICE_ACCOUNT_EMAIL = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
+const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
+
+const writeDateToGoogleSheet = async (data) => {
+  let currentDate = new Date();
+
+  const format = "HH:mm DD/MM/YYYY";
+
+  let formattedDate = moment(currentDate).format(format);
+  // Initialize the sheet - doc ID is the long id in the sheet's URL
+  const doc = new GoogleSpreadsheet(SPREADSHEET_ID);
+
+  // Initialize Auth - see more available options at https://theoephraim.github.io/node-google-spreadsheet/#/guides/authentication
+  await doc.useServiceAccountAuth({
+    client_email: GOOGLE_SERVICE_ACCOUNT_EMAIL,
+    private_key: GOOGLE_PRIVATE_KEY,
+  });
+
+  await doc.loadInfo(); // loads document properties and worksheets
+
+  const sheet = doc.sheetsByIndex[0];
+
+  await sheet.addRow({
+    "Tên FB": data.username,
+    "Địa chỉ Email": data.email,
+    "Số điện thoại": data.phoneNumber,
+    "Thời gian": formattedDate,
+    "Tên khách hàng": data.customerName,
+  });
+};
 
 export let getHomePage = (req, res) => {
   return res.render("homepage.ejs");
@@ -280,9 +314,20 @@ export const handleReserveTable = (req, res) => {
 export const handlePostReserveTable = async (req, res) => {
   console.log("!!! chạy hàm route");
   try {
+    const username = await getUserName(req.body.psid);
+
+    // write data to excel gg sheet
+    const data = {
+      username: username,
+      email: req.body.email,
+      phoneNumber: req.body.phoneNumber,
+      customerName: req.body.customerName,
+    };
+    await writeDateToGoogleSheet(data);
+
     let customerName = "";
     if (req.body.customerName === "") {
-      customerName = getUserName(req.body.psid);
+      customerName = username;
     } else {
       customerName = req.body.customerName;
     }
