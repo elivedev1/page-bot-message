@@ -206,46 +206,6 @@ export const handleDetailViewMeat = (sender_psid) => {
   });
 };
 
-let getImageRoomsTemplate = () => {
-  let response = {
-    attachment: {
-      type: "image",
-      payload: {
-        url: IMAGE_DETAIL_ROOMS,
-        is_reusable: true,
-      },
-    },
-  };
-  return response;
-};
-
-let getButtonRoomsTemplate = (sender_psid) => {
-  let response = {
-    attachment: {
-      type: "template",
-      payload: {
-        template_type: "button",
-        text: "Nhà hàng có thể phục vụ tối đa 300 khách",
-        buttons: [
-          {
-            type: "postback",
-            title: "MENU CHÍNH",
-            payload: "MAIN_MENU",
-          },
-          {
-            type: "web_url",
-            url: `${process.env.URL_WEB_VIEW_ORDER}/${sender_psid}`,
-            title: "ĐẶT BÀN",
-            webview_height_ratio: "full",
-            messenger_extensions: true,
-          },
-        ],
-      },
-    },
-  };
-  return response;
-};
-
 export const handleShowDetailRooms = (sender_psid) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -303,6 +263,45 @@ const sendTypingOn = (sender_psid) => {
       }
     }
   );
+};
+let getImageRoomsTemplate = () => {
+  let response = {
+    attachment: {
+      type: "image",
+      payload: {
+        url: IMAGE_DETAIL_ROOMS,
+        is_reusable: true,
+      },
+    },
+  };
+  return response;
+};
+
+let getButtonRoomsTemplate = (sender_psid) => {
+  let response = {
+    attachment: {
+      type: "template",
+      payload: {
+        template_type: "button",
+        text: "Nhà hàng có thể phục vụ tối đa 300 khách",
+        buttons: [
+          {
+            type: "postback",
+            title: "MENU CHÍNH",
+            payload: "MAIN_MENU",
+          },
+          {
+            type: "web_url",
+            url: `${process.env.URL_WEB_VIEW_ORDER}/${sender_psid}`,
+            title: "ĐẶT BÀN",
+            webview_height_ratio: "full",
+            messenger_extensions: true,
+          },
+        ],
+      },
+    },
+  };
+  return response;
 };
 
 const sendMarkReadMessage = (sender_psid) => {
