@@ -6,30 +6,32 @@ dotenv.config();
 const ACCESS_TOKEN = process.env.PAGE_ACCESS_TOKEN;
 
 const IMAGE_GET_STARTED =
-  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+  "https://i.pinimg.com/564x/dc/51/53/dc5153cb6aadb9492f65ddfb18b30550.jpg";
 const IMAGE_MAIN_MENU_1 =
-  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+  "https://i.pinimg.com/564x/7f/b5/b8/7fb5b84e5736df57e76cdf594d9c0123.jpg";
 const IMAGE_MAIN_MENU_2 =
-  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+  "https://i.pinimg.com/564x/f5/87/48/f58748152feecf6e2b778d9e573714e5.jpg";
 const IMAGE_MAIN_MENU_3 =
-  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+  "https://i.pinimg.com/236x/67/45/91/6745910f00688d4e49ab86be2e5db06b.jpg";
 const IMAGE_LUNCH_MENU_1 =
-  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+  "https://i.pinimg.com/236x/11/4c/63/114c638dceaf1c640004c9307af18e85.jpg";
 const IMAGE_LUNCH_MENU_2 =
-  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+  "https://cakholangvudai.com/wp-content/uploads/2015/01/cachepgionchienxu2.jpeg";
 const IMAGE_LUNCH_MENU_3 =
-  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+  "https://i.pinimg.com/564x/4c/99/76/4c9976ce977a2f14f32966a949f42396.jpg";
 const IMAGE_DINNER_MENU_1 =
-  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+  "https://i.pinimg.com/564x/4c/99/76/4c9976ce977a2f14f32966a949f42396.jpg";
 const IMAGE_DINNER_MENU_2 =
-  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+  "https://cakholangvudai.com/wp-content/uploads/2015/01/cachepgionchienxu2.jpeg";
 const IMAGE_DINNER_MENU_3 =
-  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+  "https://i.pinimg.com/564x/7f/b5/b8/7fb5b84e5736df57e76cdf594d9c0123.jpg";
 const IMAGE_DETAIL_ROOMS =
-  "https://tarot.com.vn/themes/tarot/assets/img/banner.png";
+  "https://i.pinimg.com/236x/54/ef/0b/54ef0bcdb641a97d136d4380afef3245.jpg";
 
 const IMAGE_GIF_WELCOME =
-  "https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHV5ZXo1cHlwdTJpb3A5cWZicDhkNGdocnF2NmRqM2xsamhycmI1bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/z5BiSupCT8QnNwBSs3/giphy.gif";
+  "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGV0MmVncWMwdmQybnZ6cWluYTFlczNzODQ1OWd1aDU3OHRjZHA5OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/osjgQPWRx3cac/giphy.gif";
+const GUIDE_TO_USE_VIDEO =
+  "https://business.facebook.com/247044418494034/videos/1792987324527051";
 export const callSendAPI = async (sender_psid, response) => {
   return new Promise(async (resolve, reject) => {
     try {
@@ -428,7 +430,7 @@ const getBotMediaTemplate = () => {
           {
             // attachment_id: "1792987324527051",
             media_type: "video",
-            url: "https://business.facebook.com/247044418494034/videos/1792987324527051",
+            url: GUIDE_TO_USE_VIDEO,
             buttons: [
               {
                 type: "postback",
@@ -619,6 +621,18 @@ const getDinnerMenuTemplate = () => {
                 type: "postback",
                 title: "XEM CHI TIẾT",
                 payload: "VIEW_MEAT",
+              },
+            ],
+          },
+          {
+            title: "Quay trở lại",
+            subtitle: "Quay trở lại Menu chính",
+            image_url: IMAGE_LUNCH_MENU_3,
+            buttons: [
+              {
+                type: "postback",
+                title: "QUAY TRỞ LẠI",
+                payload: "BACK_TO_MAIN_MENU",
               },
             ],
           },
