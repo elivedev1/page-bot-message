@@ -27,7 +27,6 @@ const IMAGE_DINNER_MENU_3 =
   "https://i.pinimg.com/564x/7f/b5/b8/7fb5b84e5736df57e76cdf594d9c0123.jpg";
 const IMAGE_DETAIL_ROOMS =
   "https://i.pinimg.com/236x/54/ef/0b/54ef0bcdb641a97d136d4380afef3245.jpg";
-
 const IMAGE_GIF_WELCOME =
   "https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExOGV0MmVncWMwdmQybnZ6cWluYTFlczNzODQ1OWd1aDU3OHRjZHA5OSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/osjgQPWRx3cac/giphy.gif";
 const GUIDE_TO_USE_VIDEO =
